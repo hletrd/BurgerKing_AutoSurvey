@@ -1,34 +1,4 @@
 <?php
-if (!isset($_GET['code'])) {
-	echo '<!doctype HTML>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>Burgerking</title>
-	<script src="//0101010101.com/common/jquery2.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://0101010101.com/common/bootflat.css">
-	<script>
-	var getacode = function() {
-		$.get("./?code=" + $("#code").val(), function(data) {
-			$("#result").html(data);
-			$("#refresh").html("<a href=\'./\' class=\'btn btn-success\'>Refresh</a>");
-		});
-		$("#result").html("Loading now...<br /><br />Please do not refresh. It may take up to a few minutes.");
-		$("#submit").remove();
-		$("#code").remove();
-	};
-	</script>
-	<style type="text/css">
-	.spacer {
-		height: 15px;
-	}
-	</style>
-</head>
-<body><div class="spacer"></div><div class="container"><div><input type="text" class="form-control" id="code" placeholder="Survey code(optional)" maxlength="16"></div><div class="spacer"></div><button id="submit" class="btn btn-primary btn-block" onclick="getacode()">Get a code!</button><p id="result"></p><div id="refresh"></div></div></body>
-</html>';
-	exit();
-}
 $c = curl_init();
 curl_setopt($c, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($c, CURLOPT_USERAGENT, 'AutoBurgerking');
@@ -88,4 +58,5 @@ if ($auto) {
 	echo 'user-provided';
 }
 echo '): ' . $_GET['code'] . '<br /> Code: ' . $code[1] . '</strong>';
+date_default_timezone_set("Asia/Seoul");
 ?>
