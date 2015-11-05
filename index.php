@@ -12,6 +12,7 @@ if (!isset($_GET['code'])) {
 	var getacode = function() {
 		$.get("./?code=" + $("#code").val(), function(data) {
 			$("#result").html(data);
+			$("#refresh").html("<a href=\'./\' class=\'btn btn-success\'>Refresh</a>");
 		});
 		$("#result").html("Loading now...<br /><br />Please do not refresh. It may take up to a few minutes.");
 		$("#submit").remove();
@@ -24,7 +25,7 @@ if (!isset($_GET['code'])) {
 	}
 	</style>
 </head>
-<body><div class="spacer"></div><div class="container"><div><input type="text" class="form-control" id="code" placeholder="Survey code(optional)" maxlength="16"></div><div class="spacer"></div><button id="submit" class="btn btn-primary btn-block" onclick="getacode()">Get a code!</button><p id="result"></p></div></body>
+<body><div class="spacer"></div><div class="container"><div><input type="text" class="form-control" id="code" placeholder="Survey code(optional)" maxlength="16"></div><div class="spacer"></div><button id="submit" class="btn btn-primary btn-block" onclick="getacode()">Get a code!</button><p id="result"></p><div id="refresh"></div></div></body>
 </html>';
 	exit();
 }
