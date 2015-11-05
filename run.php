@@ -18,13 +18,10 @@ curl_setopt($c, CURLOPT_URL, 'https://kor.tellburgerking.com/?AspxAutoDetectCook
 $data = curl_exec($c);
 
 $post = '';
-for($i = 0; $i < 6; $i++) {
-	$post .= 'CN' . ($i+1) . '=' . substr($_GET['code'], $i*3, 3) . '&';
-}
+for($i = 0; $i < 6; $i++) $post .= 'CN' . ($i+1) . '=' . substr($_GET['code'], $i*3, 3) . '&';
 
-$print = true;
 for($j = 0; $j < 100; $j++) {
-	if ($print) echo 'Step ' . ($j+1) . ' done!<br />';
+	echo 'Step ' . ($j+1) . ' done!<br />';
 	preg_match('/action="([^"]+)"/', $data, $match);
 	$each = explode('<input', $data);
 	$postdata = '';
@@ -46,8 +43,7 @@ for($j = 0; $j < 100; $j++) {
 	$data = curl_exec($c);
 	if (strpos($data, '확인 코드') !== false) {
 		preg_match('/확인 코드: ([0-9]{8})/', $data, $code);
-		$print = false;
-		$j = 195;
+		break;
 	}
 }
 
@@ -58,5 +54,4 @@ if ($auto) {
 	echo 'user-provided';
 }
 echo '): ' . $_GET['code'] . '<br /> Code: ' . $code[1] . '</strong>';
-date_default_timezone_set("Asia/Seoul");
 ?>
